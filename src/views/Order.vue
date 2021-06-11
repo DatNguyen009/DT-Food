@@ -2,7 +2,7 @@
   <div class="order">
       <div class="detail__header">
         <div class="header__overplay"></div>
-        <h1>Order</h1>
+        <h1>Đặt món</h1>
     </div>
     <div class="order__icon">
         <div class="container">
@@ -12,8 +12,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-1.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Giá cả hợp lí, phù hợp với túi tiền của bạn.</p>
                             </div>
                         </div>
                     </div>
@@ -21,8 +20,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-2.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Giao hàng nhanh chóng, tiện lợi.</p>
                             </div>
                         </div>
                     </div>
@@ -32,8 +30,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-3.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Nguyên liệu tươi ngon, tốt cho sức khỏe.</p>
                             </div>
                         </div>
                     </div>
@@ -41,8 +38,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-4.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Chúc quý khách có bữa ăn ngon miệng. </p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +77,9 @@ export default {
         return {
                value1: '',
                product_slug: this.$route.params.product_slug,
-               totalMoney: ""
+               totalMoney: "",
+               getdatenow: '',
+               getdatetomorrow: '',
         }
     },
     created() {
@@ -97,26 +95,38 @@ export default {
     methods: {
         order(){
             let date = new Date();
-            let getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+
+            if (date.getDate() < 10) {
+                this.getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-0${date.getDate()}`;
+                date.setDate(new Date().getDate()+1);
+                this.getdatetomorrow = `${date.getFullYear()}-0${date.getMonth()+1}-0${date.getDate()}`;
+            } else {
+                this.getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+                date.setDate(new Date().getDate()+1);
+                this.getdatetomorrow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+            }
+
             if (this.$refs.order[5].value == "" ) {
                 this.$message.error("Vui lòng nhập số lượng!!!");
             } else {
                 if (this.$refs.order[6].value == "" ) {
-                    this.$message.error("Vui lòng nhập date!!!");
+                    this.$message.error("Vui lòng nhập ngày !!!");
                 } else {
-                    if (getdatenow > this.$refs.order[6].value) {
-                        this.$message.error("Vui lòng chọn ngày trước ngày hiện tại");
+                
+                    if (this.getdatenow >= this.$refs.order[6].value) {
+                        this.$message.error("Vui lòng chọn ngày sau ngày hiện tại");
                     }
                     else{
-                        if (`${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()+1}` == this.$refs.order[6].value) {
+                        if (this.getdatetomorrow == this.$refs.order[6].value) {
                             
-                            if (`${getdatenow} ${date.getHours()}:${date.getMinutes()}` < `${getdatenow} 19:35`) {
+                            if (`${this.getdatenow} ${date.getHours()}:${date.getMinutes()}` < `${this.getdatenow} 19:35`) {
                                 Axios.post('http://localhost:8080/apiDTfood/public/api/v1/customerOrder',{
                                     product_id: this.$route.params.product_slug,
                                     customers_id: this.$refs.order[1].value,
                                     order_amount: this.$refs.order[5].value,
+                                    order_price: this.$store.getters.getProductPrice,
                                     order_totalMoney: this.$refs.order[7].value,
-                                    order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
+                                    order_dateCreated: `${this.getdatenow} ${date.getHours()}:${date.getMinutes()}`,
                                     order_dateReceived: this.$refs.order[6].value,
                                 })
                                 .then(res => {
@@ -140,8 +150,27 @@ export default {
                                     console.log(err);
                                 })
                             } else {
-                                if (`${getdatenow} ${date.getHours()}:${date.getMinutes()}` > `${getdatenow} 19:35`) {
-                                    this.$confirm(`Đơn hàng của bạn đã quá giờ đặt. Đơn hàng của bạn sẽ sẽ được gửi vào ngày ${date.getDate()+2}-0${date.getMonth()+1}-${date.getFullYear()}`,'Thông báo',{
+                                if (`${this.getdatenow} ${date.getHours()}:${date.getMinutes()}` > `${this.getdatenow} 19:35`) {
+                                    var a,b = "";
+                                    date.setDate(new Date().getDate()+2);
+                                    if (date.getDate() < 10 )
+                                    {
+                                        a = `0${date.getDate()}`;
+                                    }
+                                    else{
+                                        a = date.getDate();
+                                    }
+                                    date.setMonth(new Date().getMonth()+1);
+                                    if(date.getMonth() < 10 && date.getMonth() >= 1){
+                                        b = `0${date.getMonth()}`
+                                    }
+                                    else if(date.getMonth() === 0){
+                                        b = 12;
+                                    }
+                                    else{
+                                        b= date.getMonth();
+                                    }
+                                    this.$confirm(`Đơn hàng của bạn đã quá giờ đặt. Đơn hàng của bạn sẽ sẽ được gửi vào ngày ${a}-${b}-${date.getFullYear()}`,'Thông báo',{
                                         confirmButtonText: 'OK',
                                         cancelButtonText: 'Cancel',
                                         type: 'info'
@@ -151,9 +180,10 @@ export default {
                                             product_id: this.$route.params.product_slug,
                                             customers_id: this.$refs.order[1].value,
                                             order_amount: this.$refs.order[5].value,
+                                            order_price: this.$store.getters.getProductPrice,
                                             order_totalMoney: this.$refs.order[7].value,
-                                            order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
-                                            order_dateReceived: this.$refs.order[6].value,
+                                            order_dateCreated: `${this.getdatenow} ${date.getHours()}:${date.getMinutes()}`,
+                                            order_dateReceived: `${date.getFullYear()}-${b}-${a}`,
                                         })
                                         .then(res => {
                                             if (res.data == "success") {
@@ -193,9 +223,11 @@ export default {
                                 product_id: this.$route.params.product_slug,
                                 customers_id: this.$refs.order[1].value,
                                 order_amount: this.$refs.order[5].value,
+                                order_price: this.$store.getters.getProductPrice,
                                 order_totalMoney: this.$refs.order[7].value,
-                                order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
+                                order_dateCreated: `${this.getdatenow} ${date.getHours()}:${date.getMinutes()}`,
                                 order_dateReceived: this.$refs.order[6].value,
+
                             })
                             .then(res => {
                                 if (res.data == "success") {
@@ -229,7 +261,6 @@ export default {
                 return false;
             } else {
                 this.totalMoney = this.$refs.order[5].value * parseInt(this.$store.getters.getProductPrice); 
-                this.totalMoney = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalMoney);   
             }
         }
     },
@@ -391,6 +422,6 @@ export default {
     width: 100% !important;
 }
 .el-input__inner{
-    height: 100%;
+    height: 100%!important;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="contact__content">
     <div class="contact__header">
       <div class="header__overplay"></div>
-      <h1>Login</h1>
+      <h1>Đăng nhập</h1>
     </div>
     <div class="container">
       <el-form
@@ -14,12 +14,12 @@
         class="demo-ruleForm"
         style="margin: 10rem"
       >
-        <el-form-item label="Tên đăng nhập" prop="user">
+        <el-form-item label="Email" prop="user">
           <el-input
             type="text"
             v-model="ruleForm.user"
-            autocomplete="off"
-            placeholder="tên đăng nhập"
+          
+            placeholder="Email"
           ></el-input>
         </el-form-item>
 
@@ -27,9 +27,9 @@
           <el-input
             type="password"
             v-model="ruleForm.pass"
-            @keyup.enter="Submit(ruleForm)"
-            autocomplete="off"
-            placeholder="mật khẩu"
+            @keyup.enter.native="Submit(ruleForm)"
+            
+            placeholder="Mật khẩu"
           ></el-input>
         </el-form-item>
 
@@ -37,8 +37,7 @@
           <el-button
             type="primary"
             @click="Submit(ruleForm)"
-            @keyup.enter="Submit(ruleForm)"
-            >Submit</el-button
+            >Đăng nhập</el-button
           >
         </el-form-item>
       </el-form>
@@ -59,7 +58,7 @@ export default {
         callback(new Error("Vui lòng nhập tên đăng nhập"));
       } else {
         if (value.indexOf("@gmail.com") == -1) {
-          callback(new Error("Không đúng địa chỉ Email"));
+          callback(new Error("Email không hợp lệ !"));
         } else {
           callback();
         }

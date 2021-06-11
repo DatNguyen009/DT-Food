@@ -2,7 +2,7 @@
   <div class="shop">
     <div class="about__header">
       <div class="header__overplay"></div>
-      <h1>Cart</h1>
+      <h1>Giỏ hàng</h1>
     </div>
     <div class="container-fluid">
       <el-table
@@ -32,7 +32,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <h3 style="color: black;    text-align: end;">Tổng tiền: {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.$store.getters.getTotalPrice)}}</h3>
+      <!-- <h3 style="color: black;    text-align: end;">Tổng tiền: {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.$store.getters.getTotalPrice)}}</h3> -->
       <el-button type="primary" @click="SubmitCart()">Đặt hàng</el-button>
     </div>
   </div>
@@ -66,7 +66,19 @@ export default {
       this.multipleSelection = val;
     },
     SubmitCart() {
-      this.$router.push({path: '/orderAll'})
+      if (this.multipleSelection.length == 0) {
+        this.$notify({
+          type: 'error',
+          title:"Thông báo",
+          message: "Vui lòng chọn sản phẩm muốn mua trong giỏ hàng!!",
+          position: 'top-right'
+        })
+      } else {
+          this.$store.dispatch("multipleSelection", {
+            data: this.multipleSelection
+          });
+          this.$router.push({path: '/orderAll'})
+      }
     },
     Delete(index, array){
       Axios.delete('http://localhost:8080/apiDTfood/public/api/v1/cart/'+ array[index].product_id +"_"+ array[index].customers_id)

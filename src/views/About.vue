@@ -3,30 +3,18 @@
         <div class="about__header">
             <div class="header__overplay"></div>
             
-            <h1>About Us</h1>
+            <h1>Giới thiệu</h1>
         </div>
         <div class="about__intro">
             <div class="intro__top">
                 <div class="row">
                     <div class="col-8">
                         <div class="intro__text">
-                            <span>A</span>
-                            <p> ivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim.
-                                Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat
-                                rutrum. Nam nulla ipsum, venenatis malesuada felis quis, ultricies convallis neque.</p>
+                            <span>T</span>
+                            <p> hành lập từ năm 1945. DT-FOOD là công ty thực phẩm hàng đầu được đón nhận trên toàn Việt Nam.
+DT-FOOD mang lại cho quý khác một bữa ăn ngon lành, bổ dưỡng cùng với giá cả hợp lí.</p>
                             <div class="intro__text1">
-                                <p> Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed
-                                    quis
-                                    rutrum
-                                    tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam
-                                    nulla
-                                    ipsum,
-                                    venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique
-                                    fringilla
-                                    tempus. Ivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim
-                                    sed
-                                    quis
-                                    rutrum.</p>
+                                <p> Đề cao nguyên liệu tươi ngon tự nhiên ít tẩm ướp gia vị và sự cân bằng dưỡng chất cho cơ thể, bàn tiệc DT-FOOD luôn là sự kết hợp tuyệt vời giữa các loại thịt tuyển gắt gao cùng rau củ tươi ngon để tạo nên một bữa tiệc hoàn hảo, tươi ngon, thơm ngọt từ từng thớ thịt.</p>
                             </div>
 
 
@@ -38,14 +26,14 @@
                                 <div class="info__item">
                                     <img src="../assets/ico-05.png" alt="">
                                     <div class="info__text3">
-                                        <p>ADDRESS</p>
-                                        <p>18T - TCH18 - Q.12 - HCM</p>
+                                        <p>ĐỊA CHỈ</p>
+                                        <p>29 - Bàu Cát 6 - Q.Tân Bình - HCM</p>
                                     </div>
                                 </div>
                                 <div class="info__item">
                                     <img src="../assets/ico-05.png" alt="">
                                     <div class="info__text3">
-                                        <p>PHONE</p>
+                                        <p>SĐT</p>
                                         <p>0352073743</p>
                                     </div>
                                 </div>
@@ -70,13 +58,13 @@
                     <div class="contact__form">
                         <div class="form__content">
                             <div class="form__text">
-                                <p>CONTACT US</p>
-                                <h3>GET IN TOUCH</h3>
+                                <p>LIÊN HỆ</p>
+                                <h3>LIÊN HỆ NGAY</h3>
                             </div>
                             <div class="form__form">
                                 <input type="text" placeholder="Email">
-                                <textarea cols="40" rows="4" placeholder="Message"></textarea>
-                                <a href="#">SEND NOW</a>
+                                <textarea cols="40" rows="4" placeholder="Tin nhắn"></textarea>
+                                <a href="#">Gửi</a>
                             </div>
                         </div>
                     </div>
@@ -89,10 +77,10 @@
                     <img src="../assets/chef-1.jpg" alt="">
                     <div class="chef__text">
                         <h5>Nick Mcallister</h5>
-                        <p>OWNER</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at portitor.
+                        <p>Đầu bếp</p>
+                        <p>Nhiệt tình, thân thiện, trình độ cao.
                         </p>
-                        <a href="#">CONTACT ME</a>
+                        <a href="#">LIÊN HỆ</a>
                     </div>
                 </div>
                 <div class="chef__item">
@@ -100,21 +88,21 @@
                     <div class="chef__text">
                         <h5>Ralph Johnson
                         </h5>
-                        <p>CUSTOMER CARE</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at portitor.
+                        <p>Đầu bếp</p>
+                        <p>Nhiệt tình, thân thiện, trình độ cao.
                         </p>
-                        <a href="#">CONTACT ME</a>
+                        <a href="#">LIÊN HỆ</a>
                     </div>
                 </div>
                 <div class="chef__item">
                     <img src="../assets/chef-3.jpg" alt="">
                     <div class="chef__text">
                         <h5>Benj Spitch</h5>
-                        <p>CO-FOUNDER
+                        <p>Quản lý
                         </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at portitor.
+                        <p>Nhiệt tình, thân thiện, trình độ cao.
                         </p>
-                        <a href="#">CONTACT ME</a>
+                        <a href="#">LIÊN HỆ</a>
                     </div>
                 </div>
                 <div class="chef__item">
@@ -122,10 +110,10 @@
                     <div class="chef__text">
                         <h5>Tom Zafron</h5>
                         <p>
-                            SPECIALIST</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at portitor.
+                            Đầu bếp</p>
+                        <p>Nhiệt tình, thân thiện, trình độ cao.
                         </p>
-                        <a href="#">CONTACT ME</a>
+                        <a href="#">LIÊN HỆ</a>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,12 @@
     <div class="detail">
         <div class="detail__header">
             <div class="header__overplay"></div>
-            <h1>Product</h1>
+            <h1>Sản phẩm</h1>
         </div>
         <div class="detail__content container">
         <div class="row" v-for="(item, index) in this.$store.state.productDetail" :key="index">
             <div class="col-6">
-                <img :src="item.product_image[0].images_url" alt="">
+                <el-image :src="item.product_image[0].images_url" alt="" lazy></el-image>
             </div>
             <div class="col-6">
                 <div class="detail__text" >
@@ -19,10 +19,14 @@
                     <p>{{item.product_description}}</p>
                     <el-input-number v-model="num" :min="1" :max="10"></el-input-number>
                     <div class="detail__button">
-                        <a @click="addCart(`${product_slug}`, item.product_price)">Add to cart</a>
-                        <router-link :to="{name: 'Order', params:{product_slug: item.product_slug}}">ORDER NOW</router-link>
+                        <a @click="addCart(`${product_slug}`, item.product_price)">Thêm vào giở hàng</a>
+                        <router-link :to="{name: 'Order', params:{product_slug: item.product_slug}}">Đặt ngay </router-link>
                     </div>
-                    <p><span>Category : </span> Food delivery</p>
+                    
+                    <div class="category" style="display: flex;">
+                        <span>Thể loại : </span>
+                        <p v-for="(itemA, index) in item.product_category" :key="'B'+index"> {{itemA.category_name}},</p>
+                    </div>
 
                 </div>
             </div>
@@ -32,9 +36,9 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                    aria-controls="nav-home" aria-selected="true">Materials</a>
+                    aria-controls="nav-home" aria-selected="true">Thành phần</a>
                 <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                    aria-controls="nav-profile" aria-selected="false">Reviews()</a>
+                    aria-controls="nav-profile" aria-selected="false">Đánh giá()</a>
 
             </div>
         </nav>
@@ -48,9 +52,8 @@
                             </div>
                             <div class="col-3" v-for="(itemA, index) in item.product_material" :key="'D' + index" v-else>
                                 <div class="related__item">
-                                    <img :src="require(`../assets/materials/${itemA.materials_image}`)" :alt="itemA.materials_image">
+                                    <el-image :src="itemA.materials_image" :alt="itemA.materials_image" lazy></el-image>
                                     <h3>{{itemA.materials_name}}</h3>
-                                    <p>{{itemA.materials_amount}} {{itemA.materials_unit}}</p>
                                 </div>
                             </div>
 
@@ -93,42 +96,15 @@
         </div>
     </div>
     <div class="related__product  ">
-        <h2>Related Product</h2>
+        <h2>Món ăn tương tự</h2>
         <div class="related__content">
             <div class="row">
-                <div class="col-3">
+                <div class="col-3" v-for="(item, index) in this.$store.getters.getRelatedFood" :key="index">
                     <div class="related__item">
-                        <img src="../assets/related-1.jpg" alt="">
-                        <h3>Eggs with Ham</h3>
-                        <p>$31.00</p>
-                        <a href="#">ORDER NOW</a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="related__item">
-                        <img src="../assets/related-2.jpg" alt="">
-                        <h3>Fresh Fish
-                        </h3>
-                        <p>$32.00</p>
-                        <a href="#">ORDER NOW</a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="related__item">
-                        <img src="../assets/related-3.jpg" alt="">
-                        <h3>Sweet Cheeses
-                        </h3>
-                        <p>$38.00</p>
-                        <a href="#">ORDER NOW</a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="related__item">
-                        <img src="../assets/related-4.jpg" alt="">
-                        <h3>Grilled Meat
-                        </h3>
-                        <p>$25.00</p>
-                        <a href="#">ORDER NOW</a>
+                        <img :src="item.product_image[0].images_url" :alt="item.product_name">
+                        <h3>{{item.product_name}}</h3>
+                        <p>{{item.product_price}}</p>
+                        <router-link :to="{name: 'Order', params:{product_slug: item.product_slug}}">Đặt ngay</router-link>
                     </div>
                 </div>
             </div>
@@ -148,19 +124,29 @@ export default {
             product_slug: this.$route.params.product_slug,
             value1: null,
             value2: 3.7,
-            colors: ['#99A9BF', '#F7BA2A', '#FF9900'], // same as { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
+            colors: ['#99A9BF', '#F7BA2A', '#FF9900'], 
             message: '',
             countSubmitReview: 0,
             num: 1,
         }
     },
     created() {
+        this.$store.dispatch("product", {
+            url: "http://localhost:8080/apiDTfood/public/api/v1/products",
+            url_trendFood: "http://localhost:8080/apiDTfood/public/api/v1/trendingFood"
+        });
         this.$store.dispatch("productDetail",{
             product_slug: this.product_slug,
             url: "http://localhost:8080/apiDTfood/public/api/v1/productDetail/"
         })
+        this.$store.dispatch("RelatedFood",{
+            product_slug: this.product_slug,
+            url: "http://localhost:8080/apiDTfood/public/api/v1/relatedFood",
+            
+        })
+
         this.fetchReview();
-        
+       
     },
     
     methods: {
@@ -556,4 +542,5 @@ export default {
     background-color: rgb(45, 45, 45);
     color: #00cdce;
 }
+
 </style>

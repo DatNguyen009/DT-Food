@@ -1,14 +1,14 @@
 <template>
   <div class="admin">
     <div id="layoutSidenav">
-      <app-left-nav/>
+      <app-left-nav />
      
       <div id="layoutSidenav_content">
         <app-qtv v-if="$route.name == 'Admin' && typeAdmin == 'qtv' " />
         <app-kitchen  v-if="$route.name == 'Admin' && typeAdmin == 'nhabep' " />
         <app-ncc  v-if="$route.name == 'Admin' && typeAdmin == 'nhacungcap' " />
-        <router-view></router-view>
-        <app-footer-admin/>
+        <router-view v-bind:a="typeAdmin"></router-view>
+        <app-footer-admin />
       </div>
     </div>
   </div>

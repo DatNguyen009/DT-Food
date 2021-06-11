@@ -10,26 +10,24 @@
                             <a href="#"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <p>STAY TUNED</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu libero elit.</p>
+                        <p>DT FOOD</p>
+                        <p>29 - Bầu Cát 6 - P.14 - Tân Bình - TP.Hồ Chí Minh</p>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="footer__item">
                         <img src="../assets/logo.png" alt="">
-                        <p>vantrongle1999@gmail.com</p>
-                        <p>0352073743</p>
+                      
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="footer__item">
                         <ul>
-                            <li><a href="#">HOME</a></li>
-                            <li><a href="#">ABOUT US</a></li>
-                            <li><a href="#">SERVICERS</a></li>
-                            <li><a href="#">SHOP</a></li>
-                            <li><a href="#">CONTACT</a></li>
-                            <li><a href="#">PRODUCT</a></li>
+                            <li><a href="#">TRANG CHỦ</a></li>
+                            <li><a href="#">THỰC ĐƠN</a></li>
+                            <li><a href="#">LIÊN HỆ</a></li>
+                            <li><a href="#">GIỚI THIỆU</a></li>
+                          
                         </ul>
                     </div>
                 </div>

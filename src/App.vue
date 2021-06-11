@@ -1,9 +1,11 @@
 <template>
   <div id="app" >
-    <app-header-admin  v-if="$route.name == 'Admin' || $route.name == 'AddFood' || $route.name == 'ManageFood' ||  $route.name == 'SoftDeleted' || $route.name == 'HistoryMaterial' "/>
-    <app-header :class="checkPath" v-if="$route.name != 'Admin' &&  $route.name != 'AddFood' &&  $route.name != 'ManageFood' &&  $route.name != 'SoftDeleted'  &&  $route.name != 'AdminLogin' && $route.name != 'HistoryMaterial' "/>
+    <app-header-admin  v-if="$route.name == 'Admin' || $route.name == 'AddFood' || $route.name == 'ManageFood' ||  $route.name == 'SoftDeleted' || $route.name == 'HistoryMaterial' || $route.name == 'ManagerChangeFood' || $route.name == 'Statistical' || $route.name == 'OrderManagement' || $route.name == 'Chart' || $route.name == 'OrderCanceled' || $route.name == 'OrderPacking' || $route.name == 'OrderSuccess' || $route.name == 'User'"/>
+
+    <app-header :class="checkPath" v-if="$route.name != 'Admin' &&  $route.name != 'AddFood' &&  $route.name != 'ManageFood' &&  $route.name != 'SoftDeleted'  &&  $route.name != 'AdminLogin' && $route.name != 'HistoryMaterial' && $route.name != 'ManagerChangeFood' && $route.name != 'Statistical' && $route.name != 'OrderManagement' && $route.name != 'Chart' && $route.name != 'OrderCanceled' && $route.name != 'OrderPacking' && $route.name != 'OrderSuccess' && $route.name != 'User'"/>
+
     <router-view />
-    <app-footer v-if="$route.name != 'Admin' &&  $route.name != 'AddFood' &&  $route.name != 'ManageFood' &&  $route.name != 'SoftDeleted' &&  $route.name != 'AdminLogin' && $route.name != 'HistoryMaterial' "/>
+    <app-footer v-if="$route.name != 'Admin' &&  $route.name != 'AddFood' &&  $route.name != 'ManageFood' &&  $route.name != 'SoftDeleted' &&  $route.name != 'AdminLogin' && $route.name != 'HistoryMaterial' && $route.name != 'ManagerChangeFood' && $route.name != 'Statistical' && $route.name != 'OrderManagement' && $route.name != 'Chart' && $route.name != 'OrderCanceled'  && $route.name != 'OrderPacking' && $route.name != 'OrderSuccess' && $route.name != 'User' "/>
   
   </div>
 </template>
@@ -11,7 +13,11 @@
 import Header from './components/Header'
 import HeaderAdmin from './components/HeaderAdmin'
 import Footer from './components/Footer'
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import elementLocale  from 'element-ui/lib/locale/lang/en'
 
+Vue.use(ElementUI ,{locale: elementLocale});
 
 export default {
   

@@ -3,25 +3,23 @@
         <div class="contact__header">
             <div class="header__overplay"></div>
             
-            <h1>Contact</h1>
+            <h1>Liên hệ</h1>
         </div>
         <div class="my__contact container">
             <div class="row">
                 <div class="col-6">
-                    <h5>DROP US A LINE</h5>
-                    <p>Vivamus volutpat eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum
-                        tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum. Nam nulla ipsum,
-                        venenatis malesuada felis quis, ultricies convallis neque. Pellentesque tristique fringilla
-                        tempus.</p>
+                    <h5>LIÊN HỆ VỚI CHÚNG TÔI</h5>
+                    <p>Mọi thắc mắc và yêu cầu cần hỗ trợ từ DT-FOOD, vui lòng để lại thông tin tại đây.
+Chúng tôi sẽ xem xét và gửi phản hồi sớm nhất.</p>
                     <div class="my__form">
-                        <label>Name : </label>
+                        <label>Tên : </label>
                         <input type="text">
                         <label>Email : </label>
                         <input type="text">
-                        <p>Message : </p>
+                        <p>Tin nhắn : </p>
                         <textarea name="" id="" cols="40" rows="2"></textarea>
                         <a href="
-                        #">SEND NOW</a>
+                        #">Gửi</a>
                     </div>
                 </div>
                 <div class="col-6">
@@ -36,17 +34,14 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td>Address :</td>
-                                            <td>Avenue 234</td>
+                                            <td>Địa chỉ :</td>
+                                            <td>29 Bàu Cát</td>
                                         </tr>
                                         <tr>
-                                            <td>City :</td>
-                                            <td>New York - US</td>
+                                            <td>Thành phố :</td>
+                                            <td>Hồ Chí Minh</td>
                                         </tr>
-                                        <tr>
-                                            <td>Check-In :</td>
-                                            <td>15:00 am</td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -61,16 +56,13 @@
                                             <td>Mail :</td>
                                             <td>Vantrongle1999@gmail.com</td>
                                         </tr>
-                                        <tr>
-                                            <td>Check-Out :</td>
-                                            <td>21:00 pm</td>
-                                        </tr>
+                                     
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <p>AVAILABLE AT 10AM – 8PM</p>
+                    <p>LIÊN HỆ TỪ : 10AM – 8PM</p>
                 </div>
             </div>
         </div>

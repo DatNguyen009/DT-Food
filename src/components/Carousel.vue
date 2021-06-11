@@ -4,29 +4,29 @@
             <div class="carousel-inner  ">
                 <div class="carousel-item active" data-interval="2000">
                     <div class="carousel__content">
-                        <img src="../assets/carousel-2.jpg" alt="carousel-1">
+                        <img src="../assets/miquang3.jpg" alt="carousel-1">
                         <div class="carousel__info ">
                             <div class="row">
                                 <div class="col-6 info__content">
                                     <div class="info__text">
                                         <div class="text__h6">
-                                            <h6>PROMOTION</h6>
+                                            <h6>PHỔ BIẾN</h6>
                                             <div class="text__overplay"></div>
                                         </div>
                                         <div class="text__h2">
                                             <h2>
-                                                Amazing Table with River View & lot of Menus
+                                               Mì quảng : Đặc sản Quảng Nam
                                             </h2>
                                             <div class="text__overplay"></div>
                                         </div>
                                         <div class="text__a">
-                                            <a href="#">DETAILS</a>
+                                            <a href="http://localhost:3000/detail/mi-quang">CHI TIẾT</a>
                                             <div class="text__overplay"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 info__img">
-                                    <img src="../assets/carousel-1.jpg" alt="">
+                                    <img src="../assets/miquang3.jpg" alt="">
                                     <div class="img__overplay"></div>
 
                                 </div>
@@ -39,29 +39,29 @@
                 </div>
                 <div class="carousel-item " data-interval="2000">
                     <div class="carousel__content">
-                        <img src="../assets/carousel-1.jpg" alt="carousel-2">
+                        <img src="../assets/comtam.jpg" alt="carousel-2">
                         <div class="carousel__info ">
                             <div class="row">
                                 <div class="col-6 info__content">
                                     <div class="info__text">
                                         <div class="text__h6">
-                                            <h6>PROMOTION</h6>
+                                            <h6>PHỔ BIẾN</h6>
                                             <div class="text__overplay"></div>
                                         </div>
                                         <div class="text__h2">
                                             <h2>
-                                                Amazing Food with Fresh Daily Products & Wine
+                                               Cơm tấm : Sườn - Bì -Chả
                                             </h2>
                                             <div class="text__overplay"></div>
                                         </div>
                                         <div class="text__a">
-                                            <a href="#">DETAILS</a>
+                                            <a href="http://localhost:3000/detail/com-tam">CHI TIẾT</a>
                                             <div class="text__overplay"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 info__img">
-                                    <img src="../assets/carousel-2.jpg" alt="">
+                                    <img src="../assets/comtam.jpg" alt="">
                                     <div class="img__overplay"></div>
 
                                 </div>

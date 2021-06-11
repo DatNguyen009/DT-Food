@@ -2,7 +2,7 @@
   <div class="order">
       <div class="detail__header">
         <div class="header__overplay"></div>
-        <h1>Order</h1>
+        <h1>Đặt món</h1>
     </div>
     <div class="order__icon">
         <div class="container">
@@ -12,8 +12,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-1.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                 <p>Giá cả hợp lí, phù hợp với túi tiền của bạn.</p>
                             </div>
                         </div>
                     </div>
@@ -21,8 +20,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-2.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Giao hàng nhanh chóng, tiện lợi.</p>
                             </div>
                         </div>
                     </div>
@@ -32,8 +30,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-3.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                 <p>Nguyên liệu tươi ngon, tốt cho sức khỏe.</p>
                             </div>
                         </div>
                     </div>
@@ -41,8 +38,7 @@
                         <div class="row">
                             <div class="order__item">
                                 <img src="../assets/order-4.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas magna at
-                                    porttitor vehicula nullam augue ipsum dolor</p>
+                                <p>Chúc quý khách có bữa ăn ngon miệng. </p>
                             </div>
                         </div>
                     </div>
@@ -61,12 +57,12 @@
                 <input type="text" :placeholder="this.$store.state.customers_address" :value="this.$store.state.customers_address" disabled style="cursor: not-allowed;">
 
                 <div class="tag">
-                    <el-tag type="primary"  v-for="(item, index) in this.$store.state.getCart" :key="'A' + index"> <p v-for="(itemA,index) in item.product_info" :key="'B'+index">{{itemA.product_name}}</p></el-tag>                          
+                    <el-tag type="primary"  v-for="(item, index) in this.$store.state.multipleSelection" :key="'A' + index"> <p v-for="(itemA,index) in item.product_info" :key="'B'+index">{{itemA.product_name}}</p></el-tag>                          
                 </div>
                 <input type="text" placeholder="Tổng tiền" :value="this.$store.getters.getTotalPrice" disabled  style="cursor: not-allowed;">
                 
-                <el-date-picker v-model="value1" type="date" placeholder="Pick a day"  ></el-date-picker>
-                <el-time-select v-model="timePicker" :picker-options="{start: '08:30',step: '00:15', end: '20:30'}" placeholder="Select time">
+                <el-date-picker v-model="value1" type="date" placeholder="Chọn ngày"  ></el-date-picker>
+                <el-time-select v-model="timePicker" :picker-options="{start: '08:30',step: '00:15', end: '20:30'}" placeholder="Chọn giờ ">
                 </el-time-select>
             </form>
             <a @click="order()" style="cursor: pointer;">ĐẶT NGAY</a>
@@ -87,7 +83,9 @@ export default {
                value1: '',
                product_slug: this.$route.params.product_slug,
                totalMoney: "",
-               timePicker: ""
+               timePicker: "",
+               getdatenow: '',
+               getdatetomorrow: '',
         }
     },
     created() {
@@ -103,23 +101,34 @@ export default {
         order(){
            
             let date = new Date();
-            let getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+            if (date.getDate() < 10) {
+                this.getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-0${date.getDate()}`;
+                date.setDate(new Date().getDate()+1);
+                this.getdatetomorrow = `${date.getFullYear()}-0${date.getMonth()+1}-0${date.getDate()}`;
+            } else {
+                this.getdatenow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+                date.setDate(new Date().getDate()+1);
+                this.getdatetomorrow = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+            }
+           
             if (this.$refs.order[5].value == "" ) {
-                    this.$message.error("Vui lòng nhập date!!!");
+                    this.$message.error("Vui lòng chọn ngày!!!");
                 } else {
-                    if (getdatenow >= this.$refs.order[5].value) {
-                        this.$message.error("Vui lòng chọn ngày trước ngày hiện tại");
+                    if (this.getdatenow >= this.$refs.order[5].value) {
+                        this.$message.error("Vui lòng chọn ngày sau ngày hiện tại");
                     }
                     else{
                         if (this.$refs.order[6].value == "") {
                             this.$message.error("Vui lòng chọn giờ nhận!!!");
                         } else {
-                            if (`${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()+1}` == this.$refs.order[5].value) {
+                          
+                            if (this.getdatetomorrow == this.$refs.order[5].value) {
                             
-                                if (`${getdatenow} ${date.getHours()}:${date.getMinutes()}` < `${getdatenow} 19:35`) {
+                                if (`${this.getdatenow} ${date.getHours()}:${date.getMinutes()}` < `${this.getdatenow} 19:35`) {
+                            
                                     Axios.post('http://localhost:8080/apiDTfood/public/api/v1/multiOrder',{
-                                        data: this.$store.state.getCart,
-                                        order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
+                                        data: this.$store.state.multipleSelection,
+                                        order_dateCreated: `${this.getdatenow} `,
                                         order_dateReceived: `${this.$refs.order[5].value} ${this.$refs.order[6].value}`,
                                     })
                                     .then(res => {
@@ -143,8 +152,29 @@ export default {
                                         console.log(err);
                                     })
                                 } else {
-                                    if (`${getdatenow} ${date.getHours()}:${date.getMinutes()}` > `${getdatenow} 19:35`) {
-                                        this.$confirm(`Đơn hàng của bạn đã quá giờ đặt. Đơn hàng của bạn sẽ sẽ được gửi vào ngày ${date.getDate()+2}-0${date.getMonth()+1}-${date.getFullYear()}`,'Thông báo',{
+                                    if (`${this.getdatenow} ${date.getHours()}:${date.getMinutes()}` > `${this.getdatenow} 19:35`) {
+                                       
+                                        var a,b = "";
+                                        date.setDate(new Date().getDate()+2);
+                                        if (date.getDate() < 10 )
+                                        {
+                                            a = `0${date.getDate()}`;
+                                        }
+                                        else{
+                                            a = date.getDate();
+                                        }
+                                        date.setMonth(new Date().getMonth()+1);
+                                        if(date.getMonth() < 10 && date.getMonth() >= 1){
+                                            b = `0${date.getMonth()}`
+                                        }
+                                        else if(date.getMonth() === 0){
+                                            b = 12;
+                                        }
+                                        else{
+                                            b= date.getMonth();
+                                        }
+
+                                        this.$confirm(`Đơn hàng của bạn đã quá giờ đặt. Đơn hàng của bạn sẽ sẽ được gửi vào ngày ${a}-${b}-${date.getFullYear()}`,'Thông báo',{
                                             confirmButtonText: 'OK',
                                             cancelButtonText: 'Cancel',
                                             type: 'info'
@@ -152,9 +182,9 @@ export default {
                                         .then(() => {
                                         
                                             Axios.post('http://localhost:8080/apiDTfood/public/api/v1/multiOrder',{
-                                                data: this.$store.state.getCart,
-                                                order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
-                                                order_dateReceived: `${this.$refs.order[5].value} ${this.$refs.order[6].value}`,
+                                                data: this.$store.state.multipleSelection,
+                                                order_dateCreated: `${this.getdatenow}`,
+                                                order_dateReceived: `${date.getFullYear()}-${b}-${a} ${this.$refs.order[6].value}`,
                                             })
                                             .then(res => {
                                                 if (res.data == "success") {
@@ -190,9 +220,10 @@ export default {
                                 }
                             }
                             else{
+                                
                                 Axios.post('http://localhost:8080/apiDTfood/public/api/v1/multiOrder',{
-                                    data: this.$store.state.getCart,
-                                    order_dateCreated: `${getdatenow} ${date.getHours()}:${date.getMinutes()}`,
+                                    data: this.$store.state.multipleSelection,
+                                    order_dateCreated: `${this.getdatenow}`,
                                     order_dateReceived: `${this.$refs.order[5].value} ${this.$refs.order[6].value}`,
                                 })
                                 .then(res => {
@@ -219,6 +250,8 @@ export default {
                         }
                     }
                 }
+
+            
             
         },
         totalPrice(){
@@ -398,5 +431,9 @@ export default {
 }
 .el-input__inner{
     height: 100%;
+}
+button.el-button.el-button--primary {
+    margin: 10px !important;
+    display: inline-grid;
 }
 </style>

@@ -82,10 +82,22 @@ const routes = [{
             import ( /* webpackChunkName: "Home" */ '../views/Login.vue')
     },
     {
+        path: '/register',
+        name: 'Register',
+        component: () =>
+            import ( /* webpackChunkName: "Home" */ '../views/Register.vue')
+    },
+    {
         path: '/cart',
         name: 'Cart',
         component: () =>
             import ( /* webpackChunkName: "Home" */ '../views/Cart.vue')
+    },
+    {
+        path: '/inforUser',
+        name: 'InforUser',
+        component: () =>
+            import ( /* webpackChunkName: "Home" */ '../views/InforUser.vue')
     },
     {
         path: '/admin',
@@ -115,6 +127,60 @@ const routes = [{
                 name: "HistoryMaterial",
                 component: () =>
                     import ( /* webpackChunkName: "Home" */ '../components/admin/HistoryMaterial.vue')
+            },
+            {
+                path: 'managerChangeFood',
+                name: "ManagerChangeFood",
+                component: () =>
+                    import ( /* webpackChunkName: "Home" */ '../components/admin/changeFood.vue'),
+
+            },
+            {
+                path: 'statistical',
+                name: "Statistical",
+                component: () =>
+                    import ( /* webpackChunkName: "Home" */ '../components/admin/statistical.vue'),
+
+            },
+            {
+                path: 'orderManagement',
+                name: "OrderManagement",
+                component: () =>
+                    import ( /* webpackChunkName: "Home" */ '../components/admin/OrderMangement.vue'),
+                children: [{
+                        path: 'OrderCanceled',
+                        name: "OrderCanceled",
+                        component: () =>
+                            import ( /* webpackChunkName: "Home" */ '../components/admin/orderCanceled.vue')
+                    },
+                    {
+                        path: 'OrderPacking',
+                        name: "OrderPacking",
+                        component: () =>
+                            import ( /* webpackChunkName: "Home" */ '../components/admin/orderPacking.vue')
+                    },
+                    {
+                        path: 'OrderSuccess',
+                        name: "OrderSuccess",
+                        component: () =>
+                            import ( /* webpackChunkName: "Home" */ '../components/admin/orderSuccess.vue')
+                    }
+                ],
+
+            },
+            {
+                path: 'chart',
+                name: "Chart",
+                component: () =>
+                    import ( /* webpackChunkName: "Home" */ '../components/admin/chartDTFood.vue'),
+
+            },
+            {
+                path: 'user',
+                name: "User",
+                component: () =>
+                    import ( /* webpackChunkName: "Home" */ '../components/admin/Usermanagement.vue'),
+
             }
         ]
     },

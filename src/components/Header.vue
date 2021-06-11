@@ -5,11 +5,11 @@
         <div class="col-5">
           <div class="header__left">
             <ul>
-              <li><router-link to="/">HOME</router-link></li>
-              <li><router-link to="/news">NEWS</router-link></li>
+              <li><router-link to="/">TRANG CHỦ</router-link></li>
+              <li><router-link to="/shops">THỰC ĐƠN</router-link></li>
 
-              <li><router-link to="/about">ABOUT US</router-link></li>
-              <li><router-link to="/contact">CONTACT</router-link></li>
+              <li><router-link to="/contact">LIÊN HỆ</router-link></li>
+              <li><router-link to="/about">GIỚI THIỆU</router-link></li>
             </ul>
           </div>
         </div>
@@ -21,32 +21,31 @@
         <div class="col-5">
           <div class="header__right">
             <div class="row">
-              <div class="col-9 left">
+              <div class="col-6 left">
                 <ul>
-                  <li><router-link to="/shops">SHOP</router-link></li>
                   <li>
                     <input
                       type="text"
-                      placeholder="Search"
+                      placeholder="Tìm kiếm"
                       v-model="name"
                       @keyup.enter="Search(name)"
                     />
                   </li>
                 </ul>
               </div>
-              <div class="col-3 right">
+              <div class="col-6 right">
                 <ul v-if="this.$store.state.statusLogin == null">
-                  <li><router-link to="/login">LOGIN</router-link></li>
-                  <li><router-link to="#">REGISTER</router-link></li>
+                  <li><router-link to="/login">ĐĂNG NHẬP</router-link></li>
+                  <li><router-link to="/register">ĐĂNG KÝ</router-link></li>
                 </ul>
                 <ul v-if="this.$store.state.statusLogin == 'Login'">
                   <li></li><router-link to="/cart"><i class="fas fa-cart-plus"></i></router-link>
                   <li>
-                    <router-link to="#">{{
+                    <router-link to="/inforUser">{{
                       this.$store.state.username
                     }}</router-link>
                   </li>
-                  <li><a @click="Logout()">Logout</a></li>
+                  <li><a @click="Logout()">ĐĂNG XUẤT</a></li>
                 </ul>
               </div>
             </div>
@@ -66,7 +65,7 @@ export default {
   },
   methods: {
     Search(value) {
-      this.$router.push({ path: "search", query: { q: `${value}` } });
+      this.$router.push({ path: "/search", query: { q: `${value}` } });
       this.name = "";
     },
     Logout() {
@@ -113,7 +112,7 @@ export default {
   text-decoration: none;
 }
 .header__left ul li {
-  padding: 16px 20px;
+  padding: 16px 16px;
   letter-spacing: 3px;
 }
 .left ul li {
@@ -122,7 +121,6 @@ export default {
 }
 .right ul li {
   padding: 16px 10px;
-  letter-spacing: 3px;
 }
 .header__right input {
   color: white;
@@ -147,5 +145,6 @@ export default {
 }
 .header__content ul li a:hover {
   color: #00cdce;
+  text-decoration: none;
 }
 </style>

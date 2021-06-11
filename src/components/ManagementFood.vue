@@ -48,7 +48,7 @@
                         <el-table-column width="200" property="materials_slug" label="Slug"></el-table-column>
                         <el-table-column width="200" property="materials_image" label="Ảnh">
                           <template slot-scope="scope">
-                            <img style="width: 30%;" :src="require(`../assets/materials/${scope.row.materials_image}`)"/>
+                            <img style="width: 30%;" :src="scope.row.materials_image"/>
                           </template>
                         </el-table-column>
                         <el-table-column width="350" property="materials_amount" label="Số lượng"></el-table-column>
@@ -56,7 +56,7 @@
                       </el-table>
                       <el-button slot="reference" class="optionBtn" type="primary" @click="detailProduct(item.product_slug)">Chi tiết</el-button>
                     </el-popover>
-                      <el-button class="optionBtn" type="warning">Sửa</el-button>
+                      <router-link  to="/admin/managerChangeFood"><el-button class="optionBtn" type="warning" style="margin-bottom:10px;">Sửa</el-button></router-link>
                       <el-button class="optionBtn" type="danger" @click="DeleteProduct(item.product_slug)">Xóa</el-button>
                   </td>
                 </tr>
@@ -92,8 +92,16 @@ export default {
             }]
         }
     },
+    props:{
+        a:{
+            type: String
+        }
+    },
     created() {
         this.getListProduct();
+        if (this.a != "qtv") {
+            this.$router.push({ path: "/admin" });
+        }
     },
    
     methods: {
