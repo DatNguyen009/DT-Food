@@ -59,6 +59,7 @@ export default {
                 password: this.$refs.Data[1].value
             })
             .then(res => {
+              
                 if (res.data.length > 0 && res.data != "error") {
                     localStorage.setItem("Admin", res.data[0].name);
                     this.$notify({

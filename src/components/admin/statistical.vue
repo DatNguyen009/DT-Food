@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small  stretched-link" href="#">0</a>
+                            <a class="small  stretched-link" href="#">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(TotalRevenue - CostStatistical)}}</a>
                             <div class="small "><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <img src="https://img.icons8.com/dotty/80/000000/get-revenue--v3.png" width="20" />
                             Tổng doanh thu</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small  stretched-link" href="#">0</a>
+                            <a class="small  stretched-link" href="#">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(TotalRevenue)}}</a>
                             <div class="small "><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <img src="https://img.icons8.com/carbon-copy/100/000000/cost.png" width="20" />
                             Tổng chi phí</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small  stretched-link" href="#">0</a>
+                            <a class="small  stretched-link" href="#">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(CostStatistical)}}</a>
                             <div class="small "><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <el-select v-model="value" placeholder="Select" @change="statiscal()" style="margin-bottom: 10px;"> 
+            <el-select v-model="value" placeholder="Chọn tháng" @change="statiscal()" style="margin-bottom: 10px;"> 
                 <el-option
                 v-for="item in months"
                 :key="item.value"

@@ -56,6 +56,7 @@
                 prop="materials_price"
                 label="Đơn giá"
                 width="auto"
+                v-if="$attrs.a != 'nhabep' "
                 >
                    <template slot-scope="scope">
                         <p v-for="(item, index) in scope.row.materials_price" :key="index">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format( item.materials_price)}}</p>
@@ -65,6 +66,7 @@
                 prop="materials_total"
                 label="Thành tiền"
                 width="auto"
+                 v-if="$attrs.a != 'nhabep' "
                 >
                    <template slot-scope="scope">
                         <p>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format( scope.row.materials_total)}}</p>
@@ -101,11 +103,12 @@ export default {
         
       }
     },
+   
     created() {
         // this.$store.dispatch("getNcc", {
         //     url: "http://localhost:8080/apiDTfood/public/api/v1/setPriceNcc",
         // });
-
+      
        
     },
     methods: {

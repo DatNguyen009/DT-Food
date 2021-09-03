@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         fetchDataUser() {
-            Axios.get("http://localhost:8080/apiDTfood/public/api/v1/customers")
+            Axios.get("http://localhost:8080/apiDTfood/public/api/v1/Managercustomers")
                 .then(res => this.ListUser = res.data.data)
                 .catch(err => console.log(err))
         },
@@ -69,7 +69,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 console.log(id);
-                Axios.delete("http://localhost:8080/apiDTfood/public/api/v1/customers/"+id)
+                Axios.delete("http://localhost:8080/apiDTfood/public/api/v1/Managercustomers/"+id)
                 .then(res => {
                     if (res.data.msg == "Successfully") {
                         this.$message({

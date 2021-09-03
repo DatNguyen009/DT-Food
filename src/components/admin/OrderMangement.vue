@@ -95,7 +95,7 @@
                         <el-button
                         type="warning"
                         v-if="scope.row.order_status == 'chua giao hang'"
-                        @click="handlePack(scope.$index, scope.row.order_id)" style="width: 100%;margin:10px 0;">Đóng gói</el-button>
+                        @click="handlePack(scope.$index, scope.row.order_id, scope.row.order_dateReceived)" style="width: 100%;margin:10px 0;">Đóng gói</el-button>
                         
                         <el-popover
                             placement="left"
@@ -135,7 +135,8 @@ export default {
         return {
             ListOrder: [],
             totalPages: 0,
-            tableDetail: []
+            tableDetail: [],
+            date:'',
         }
     },
     props:{
@@ -147,6 +148,12 @@ export default {
         this.getListOrder();
         if (this.a != "qtv") {
             this.$router.push({ path: "/admin" });
+        }
+        var today = new Date();
+        if (today.getDate() < 10) {
+            this.date = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()}`;
+        } else {
+            this.date = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()}`;
         }
     },
     methods: {
@@ -167,7 +174,7 @@ export default {
         },
         handleSuccess(i,r, order_status)
         {
-        
+            
             if (order_status == "chua giao") {
                 this.$notify({
                     type: 'error',
@@ -211,38 +218,51 @@ export default {
             }
 
         },
-        handlePack(i,r){
-            this.$confirm(`Bạn có chắc chắn muốn đóng gói sản phẩm này??`,'Thông báo',{
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                type: 'info'
-            })
-            .then(() => {
-                Axios.put("http://localhost:8080/apiDTfood/public/api/v1/orderManagement/{id}",{
-                    update: "pack",
-                    data: r
-                })
-                .then(res => {
-                    if (res.data == "success") {
-                        this.$notify({
-                            type: 'success',
-                            message: 'Đóng gói sản phẩm thành công!!!',
-                            title: 'Thành công',
-                            position: 'top-left',
-                        })
-                        location.reload();
-                    }
-                })
-                .catch(err => console.log(err))
-            })
-            .catch(()=>{
+        handlePack(i,r, orderDay){
+
+            if (this.date < orderDay.slice(0, 10)) {
                 this.$notify({
                     type: 'error',
                     message: 'Đóng sản phẩm thất bại!!!',
                     title: 'Thất bại',
                     position: 'top-right',
                 })
-            })
+                return false;
+            }
+            else{
+
+                this.$confirm(`Bạn có chắc chắn muốn đóng gói sản phẩm này??`,'Thông báo',{
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'info'
+                })
+                .then(() => {
+                    Axios.put("http://localhost:8080/apiDTfood/public/api/v1/orderManagement/{id}",{
+                        update: "pack",
+                        data: r
+                    })
+                    .then(res => {
+                        if (res.data == "success") {
+                            this.$notify({
+                                type: 'success',
+                                message: 'Đóng gói sản phẩm thành công!!!',
+                                title: 'Thành công',
+                                position: 'top-left',
+                            })
+                            location.reload();
+                        }
+                    })
+                    .catch(err => console.log(err))
+                })
+                .catch(()=>{
+                    this.$notify({
+                        type: 'error',
+                        message: 'Đóng sản phẩm thất bại!!!',
+                        title: 'Thất bại',
+                        position: 'top-right',
+                    })
+                })
+            }
              
         },
         Show(id)

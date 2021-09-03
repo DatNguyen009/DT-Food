@@ -17,7 +17,7 @@
                         <el-rate v-model="value2" :colors="colors" score-template="{value} points"> </el-rate>
                     </div>
                     <p>{{item.product_description}}</p>
-                    <el-input-number v-model="num" :min="1" :max="10"></el-input-number>
+                    <el-input-number v-model="num" :min="1" :max="1000"></el-input-number>
                     <div class="detail__button">
                         <a @click="addCart(`${product_slug}`, item.product_price)">Thêm vào giở hàng</a>
                         <router-link :to="{name: 'Order', params:{product_slug: item.product_slug}}">Đặt ngay </router-link>

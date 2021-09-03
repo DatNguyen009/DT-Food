@@ -25,7 +25,7 @@ export default {
           maintainAspectRatio: false,
         title: {
           display: true,
-          text: "Biểu đồ thống kê lợi nhuận theo năm",
+          text: "Biểu đồ thống kê lợi nhuận theo tháng",
         },  
         
         }

@@ -88,6 +88,18 @@ const routes = [{
             import ( /* webpackChunkName: "Home" */ '../views/Register.vue')
     },
     {
+        path: '/forgetpass',
+        name: 'ForgetPass',
+        component: () =>
+            import ( /* webpackChunkName: "Home" */ '../views/ForgetPass.vue')
+    },
+    {
+        path: '/resetpass',
+        name: 'ResetPass',
+        component: () =>
+            import ( /* webpackChunkName: "Home" */ '../views/ResetPass.vue')
+    },
+    {
         path: '/cart',
         name: 'Cart',
         component: () =>

@@ -86,7 +86,7 @@ export default {
             .catch(err => console.log(err))
         },
         handleCurrentChange(val){
-            Axios.get(`http://localhost:8080/apiDTfood/public/api/v1/orderManagement?page=${val}`)
+            Axios.get(`http://localhost:8080/apiDTfood/public/api/v1/orderManagement/orderSuccess?page=${val}`)
             .then(res => {
                 this.ListOrder = res.data.data;
             })

@@ -106,15 +106,25 @@ export default {
         countdown() {
             var today = new Date();
             if (today.getDate() < 10) {
-                this.date = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
-                this.dateNow = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
-                today.setDate(new Date().getDate()+1);
+                if (today.getHours() < 10){
+                    this.date = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()} 0${today.getHours()}:${today.getMinutes()}`;
+                }else{
+                    this.date = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+                }
                 this.dateTomorrow = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()}`;
+                this.dateNow = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()} 19:30`;
+                today.setDate(new Date().getDate()+1);
             } else {
-                this.date = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+                if (today.getHours() < 10){
+                    this.date = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} 0${today.getHours()}:${today.getMinutes()}`;
+                    this.dateTomorrow = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} 0${today.getHours()}:${today.getMinutes()}`;
+                }else{
+                    this.date = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+                    this.dateTomorrow = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+                }
+                
                 this.dateNow = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()} 19:30`;
                 today.setDate(new Date().getDate()+1);
-                this.dateTomorrow = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()}  ${today.getHours()}:${today.getMinutes()}`;
             }
         },
         

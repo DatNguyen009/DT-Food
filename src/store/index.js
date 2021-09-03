@@ -81,16 +81,34 @@ export default new Vuex.Store({
             }, []);
 
 
-            return result;
-            // state.trendingFood.forEach(item => {
-            //     if (result.length < 4) {
-            //         result.push(item);
-            //     }
-            // });
-            // return result;
-            // return result.filter((item, index) => {
-            //     return index < 4;
-            // })
+
+            state.trendingFood.forEach(item => {
+                if (result.length < 4) {
+                    result.push(item);
+                }
+            });
+
+            let helperA = {};
+            let resultA = result.reduce((r, item) => {
+                item.product_category.forEach(itemA => {
+                    slug.forEach(itemB => {
+                        let key = item.product_slug;
+                        if (itemA.category_name == itemB.category_name) {
+                            if (!helperA[key] && key != slugProduct) {
+                                helperA[key] = Object.assign({}, item);
+                                r.push(helperA[key]);
+                            }
+                        }
+                    });
+                })
+
+                return r;
+            }, []);
+
+
+            return resultA.filter((item, index) => {
+                return index < 4;
+            })
 
 
 
